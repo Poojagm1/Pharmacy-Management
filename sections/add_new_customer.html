@@ -113,7 +113,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-        var subjectObject = {
+        var districtObject = {
             "Koppal": {
                 "Gangavathi": ["GV1", "GV2", "GV3", "GV4"],
                 "Koppal": ["Koppala", "Ginageri", "Bassapura", "Kidadala", "Hanumanahalli", "Kutaganahalli", "Gabbura", "Lingadalli", "Shahapura", "Rudrapura", "Kanakapura", "Allanagara", "Madinura", "Naregalla", "Kolura", "Mangalapura", "Gunnalli", "Horatattannala", "Dadegalla", "Yatnatti", "Ojanalli", "Chilavadgi", "Devalapura", "Kalakeri", "Hatti"],
@@ -142,28 +142,26 @@
             }
         }
         window.onload = function () {
-            var subjectSel = document.getElementById("subject");
-            var topicSel = document.getElementById("topic");
-            var chapterSel = document.getElementById("chapter");
-            for (var x in subjectObject) {
-                subjectSel.options[subjectSel.options.length] = new Option(x, x);
+            var districtSel = document.getElementById("district");
+            var talukSel = document.getElementById("taluk");
+            var villegeSel = document.getElementById("villege");
+            for (var x in districtObject) {
+                districtSel.options[districtSel.options.length] = new Option(x, x);
             }
-            subjectSel.onchange = function () {
-                //empty Chapters- and Topics- dropdowns
-                chapterSel.length = 1;
-                topicSel.length = 1;
+            districtSel.onchange = function () {
+                villegeSel.length = 1;
+                talukSel.length = 1;
                 //display correct values
-                for (var y in subjectObject[this.value]) {
-                    topicSel.options[topicSel.options.length] = new Option(y, y);
+                for (var y in districtObject[this.value]) {
+                    talukSel.options[talukSel.options.length] = new Option(y, y);
                 }
             }
-            topicSel.onchange = function () {
-                //empty Chapters dropdown
-                chapterSel.length = 1;
+            talukSel.onchange = function () {
+                villegeSel.length = 1;
                 //display correct values
-                var z = subjectObject[subjectSel.value][this.value];
+                var z = districtObject[districtSel.value][this.value];
                 for (var i = 0; i < z.length; i++) {
-                    chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+                    villegeSel.options[villegeSel.options.length] = new Option(z[i], z[i]);
                 }
             }
         }
@@ -173,19 +171,19 @@
     <br />
     <div class="col-md-3 col-lg-3">
         <label class="font-weight-bold" for="district">District :</label>
-        <select name="subject" id="subject">
+        <select name="district" id="district">
             <option value="" selected="selected">Select District</option>
         </select>
     </div>
     <div class="col-md-3 col-lg-5">
         <label class="font-weight-bold" for="district">District :</label>
-        <select name="topic" id="topic">
+        <select name="taluk" id="taluk">
             <option value="" selected="selected">Please select district first</option>
         </select>
     </div>
     <div class="col-md-4 col-lg-4">
         <label class="font-weight-bold" for="district">District :</label>
-        <select name="chapter" id="chapter">
+        <select name="villege" id="villege">
             <option value="" selected="selected">Please select taluk first</option>
         </select>
     </div>
