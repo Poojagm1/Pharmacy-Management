@@ -107,32 +107,52 @@ function checkDate(date, error) {
   }
   return false;
 }
-
 function addCustomer() {
   document.getElementById("customer_acknowledgement").innerHTML = "";
-  var customer_name = document.getElementById("customer_name");
-  var contact_number = document.getElementById("customer_contact_number");
-  var customer_address = document.getElementById("customer_address");
-  var doctor_name = document.getElementById("customer_doctors_name");
-  var doctor_address = document.getElementById("customer_doctors_address");
-  if(!validateName(customer_name.value, "name_error"))
-    customer_name.focus();
-  else if(!validateContactNumber(contact_number.value, "contact_number_error"))
-    contact_number.focus();
-  else if(!validateAddress(customer_address.value, "address_error"))
-    customer_address.focus();
-  else if(!validateName(doctor_name.value, 'doctor_name_error'))
-    doctor_name.focus();
-  else if(!validateAddress(doctor_address.value, 'doctor_address_error'))
-    doctor_address.focus();
-  else {
+
+  // Collecting input values
+  var inputs = {
+    //customer_name: document.getElementById("customer_name").value,
+    //contact_number: document.getElementById("customer_contact_number").value,
+    //customer_address: document.getElementById("customer_address").value,
+    //doctor_name: document.getElementById("customer_doctors_name").value,
+    //doctor_address: document.getElementById("customer_doctors_address").value,
+    name: document.getElementById("name").value,
+    age: document.getElementById("age").value,
+    date_of_birth: document.getElementById("date_of_birth").value,
+    contact_number: document.getElementById("contact_number").value,
+    alternative_number: document.getElementById("alternative_number").value,
+    father_name: document.getElementById("father_name").value,
+    father_occupation: document.getElementById("father_occupation").value,
+    mother_name: document.getElementById("mother_name").value,
+    mother_occupation: document.getElementById("mother_occupation").value,
+    address1: document.getElementById("address1").value,
+    address2: document.getElementById("address2").value,
+    adhar_card_number: document.getElementById("adhar_card_number").value,
+    given_card: document.getElementById("given_card").value,
+    district: document.getElementById("district").value,
+    taluk: document.getElementById("taluk").value,
+    villege: document.getElementById("villege").value
+  };
+
+  // Validation checks
+  if (!validateName(inputs.name, "name_error")) {
+    document.getElementById("name").focus();
+  }  else {
+    // Creating the query string
+    var queryString = Object.keys(inputs)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(inputs[key]))
+      .join('&');
+
+    // Sending the AJAX request
     var xhttp = new XMLHttpRequest();
-  	xhttp.onreadystatechange = function() {
-  		if(xhttp.readyState = 4 && xhttp.status == 200)
-  			document.getElementById("customer_acknowledgement").innerHTML = xhttp.responseText;
-  	};
-  	xhttp.open("GET", "php/add_new_customer.php?name=" + customer_name.value + "&contact_number=" + contact_number.value + "&address=" + customer_address.value + "&doctor_name=" + doctor_name.value + "&doctor_address=" + doctor_address.value, true);
-  	xhttp.send();
+    xhttp.onreadystatechange = function() {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        document.getElementById("customer_acknowledgement").innerHTML = xhttp.responseText;
+      }
+    };
+    xhttp.open("GET", "php/add_new_customer.php?" + queryString, true);
+    xhttp.send();
   }
   return false;
 }
@@ -142,7 +162,7 @@ function addSupplier() {
   var supplier_name = document.getElementById("supplier_name");
   var supplier_email = document.getElementById("supplier_email");
   var contact_number = document.getElementById("supplier_contact_number");
-  var supplier_address = document.getElementById("supplier_address");
+    var supplier_address = document.getElementById("supplier_address");
   if(!validateName(supplier_name.value, "name_error"))
     supplier_name.focus();
   else if(!validateContactNumber(contact_number.value, "contact_number_error"))

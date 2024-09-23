@@ -18,11 +18,13 @@
     if(isset($_GET["action"]) && $_GET["action"] == "update") {
       $id = $_GET["id"];
       $name = ucwords($_GET["name"]);
+      $age = ucwords($_GET["age"]);
       $contact_number = $_GET["contact_number"];
+      $alternative_number = $_GET["alternative_number"];
       $address = ucwords($_GET["address"]);
       $doctor_name = ucwords($_GET["doctor_name"]);
       $doctor_address = ucwords($_GET["doctor_address"]);
-      updateCustomer($id, $name, $contact_number, $address, $doctor_name, $doctor_address);
+      updateCustomer($id, $name, $age, $contact_number, $alternative_number, $address, $doctor_name, $doctor_address);
     }
 
     if(isset($_GET["action"]) && $_GET["action"] == "cancel")
@@ -54,10 +56,21 @@
       <td><?php echo $seq_no; ?></td>
       <td><?php echo $row['ID'] ?></td>
       <td><?php echo $row['NAME']; ?></td>
+      <td><?php echo $row['AGE']; ?></td>
+      <td><?php echo $row['DATE_OF_BIRTH']; ?></td>
       <td><?php echo $row['CONTACT_NUMBER']; ?></td>
-      <td><?php echo $row['ADDRESS']; ?></td>
-      <td><?php echo $row['DOCTOR_NAME']; ?></td>
-      <td><?php echo $row['DOCTOR_ADDRESS']; ?></td>
+      <td><?php echo $row['ALTERNATIVE_NUMBER']; ?></td>
+      <td><?php echo $row['FATHER_NAME']; ?></td>
+      <td><?php echo $row['FATHER_OCCUPATION']; ?></td>
+      <td><?php echo $row['MOTHER_NAME']; ?></td>
+      <td><?php echo $row['MOTHER_OCCUPATION']; ?></td>
+      <td><?php echo $row['ADDRESS1']; ?></td>
+      <td><?php echo $row['ADDRESS2']; ?></td>
+      <td><?php echo $row['ADHAR_CARD_NUMBER']; ?></td>
+      <td><?php echo $row['GIVEN_CARD']; ?></td>
+      <td><?php echo $row['DISTRICT']; ?></td>
+      <td><?php echo $row['TALUK']; ?></td>
+      <td><?php echo $row['VILLEGE']; ?></td>
       <td>
         <button href="" class="btn btn-info btn-sm" onclick="editCustomer(<?php echo $row['ID']; ?>);">
           <i class="fa fa-pencil"></i>
@@ -77,6 +90,14 @@ function showEditOptionsRow($seq_no, $row) {
     <td><?php echo $row['ID'] ?></td>
     <td>
       <input type="text" class="form-control" value="<?php echo $row['NAME']; ?>" placeholder="Name" id="customer_name" onkeyup="validateName(this.value, 'name_error');">
+      <code class="text-danger small font-weight-bold float-right" id="name_error" style="display: none;"></code>
+    </td>
+    <td>
+      <input type="text" class="form-control" value="<?php echo $row['AGE']; ?>" placeholder="Age" id="customer_age" onkeyup="validateAge(this.value, 'age_error');">
+      <code class="text-danger small font-weight-bold float-right" id="age_error" style="display: none;"></code>
+    </td>
+    <td>
+      <input type="text" class="form-control" value="<?php echo $row['DATE_OF_BIRTH']; ?>" placeholder="Date_of_Birth" id="customer_date_of_birth" onkeyup="validateName(this.value, 'name_error');">
       <code class="text-danger small font-weight-bold float-right" id="name_error" style="display: none;"></code>
     </td>
     <td>
@@ -107,9 +128,9 @@ function showEditOptionsRow($seq_no, $row) {
   <?php
 }
 
-function updateCustomer($id, $name, $contact_number, $address, $doctor_name, $doctor_address) {
+function updateCustomer($id, $name, $age, $contact_number, $address, $doctor_name, $doctor_address) {
   require "db_connection.php";
-  $query = "UPDATE customers SET NAME = '$name', CONTACT_NUMBER = '$contact_number', ADDRESS = '$address', DOCTOR_NAME = '$doctor_name', DOCTOR_ADDRESS = '$doctor_address' WHERE ID = $id";
+  $query = "UPDATE customers SET NAME = '$name', AGE= '$age', CONTACT_NUMBER = '$contact_number', ADDRESS = '$address', DOCTOR_NAME = '$doctor_name', DOCTOR_ADDRESS = '$doctor_address' WHERE ID = $id";
   $result = mysqli_query($con, $query);
   if(!empty($result))
     showCustomers(0);

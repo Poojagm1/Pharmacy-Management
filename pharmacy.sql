@@ -48,22 +48,34 @@ INSERT INTO `admin_credentials` (`USERNAME`, `PASSWORD`) VALUES
 CREATE TABLE `customers` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(20) COLLATE utf16_bin NOT NULL,
-  `CONTACT_NUMBER` varchar(10) COLLATE utf16_bin NOT NULL,
-  `ADDRESS` varchar(100) COLLATE utf16_bin NOT NULL,
-  `DOCTOR_NAME` varchar(20) COLLATE utf16_bin NOT NULL,
-  `DOCTOR_ADDRESS` varchar(100) COLLATE utf16_bin NOT NULL
+  `AGE` int(3) NOT NULL,
+  `DATE_OF_BIRTH` varchar(100) COLLATE utf16_bin NOT NULL,
+  `CONTACT_NUMBER` int(10) COLLATE utf16_bin NOT NULL,
+  `ALTERNATIVE_NUMBER` int(10) COLLATE utf16_bin NOT NULL,
+  `FATHER_NAME` varchar(20) COLLATE utf16_bin NOT NULL,
+  `FATHER_OCCUPATION` varchar(100) COLLATE utf16_bin NOT NULL,
+  `MOTHER_NAME` varchar(20) COLLATE utf16_bin NOT NULL,
+  `MOTHER_OCCUPATION` varchar(100) COLLATE utf16_bin NOT NULL,
+  `ADDRESS1` varchar(100) COLLATE utf16_bin NOT NULL,
+  `ADDRESS2` varchar(100) COLLATE utf16_bin NOT NULL,
+  `ADHAR_CARD_NUMBER` varchar(100) COLLATE utf16_bin NOT NULL,
+  `GIVEN_CARD` varchar(100) COLLATE utf16_bin NOT NULL,
+  `DISTRICT` varchar(100) COLLATE utf16_bin NOT NULL,
+  `TALUK` varchar(100) COLLATE utf16_bin NOT NULL,
+  `VILLEGE` varchar(100) COLLATE utf16_bin NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`ID`, `NAME`, `CONTACT_NUMBER`, `ADDRESS`, `DOCTOR_NAME`, `DOCTOR_ADDRESS`) VALUES
-(4, 'Kiran Suthar', '1234567690', 'Andheri East', 'Anshari', 'Andheri East'),
-(6, 'Aditya', '7365687269', 'Virar West', 'Xyz', 'Virar West'),
-(11, 'Shivam Tiwari', '6862369896', 'Dadar West', 'Dr Kapoor', 'Dadar East'),
-(13, 'Varsha Suthar', '7622369694',  'Rani Station', 'Dr Ramesh', 'Rani Station'),
-(14, 'Prakash Bhattarai', '9802851472', 'Pokhara-16, Dhikidada', 'Hari Bahadur', 'Matepani-12');
+INSERT INTO `customers` (`ID`, `NAME`, `AGE`, `DATE_OF_BIRTH`, `CONTACT_NUMBER`, `ALTERNATIVE_NUMBER`, `FATHER_NAME`, `FATHER_OCCUPATION`, `MOTHER_NAME`, `MOTHER_OCCUPATION`, `ADDRESS1`, `ADDRESS2`, `ADHAR_CARD_NUMBER`, `GIVEN_CARD`, `DISTRICT`, `TALUK`, `VILLEGE`) VALUES
+(4, 'Kiran Suthar', 22, '2002-12-12', '9876234556', '1234566690', 'Anshari', 'Engineer', 'Anshu', 'Engineer', 'Vijayanagar', 'Second Stage', '123412341234', 'gold', 'Koppal', 'Koppal', 'Koppala'),
+(6, 'Aditya', 30, '1994/05/06', '7365687269', '1294567690', 'Xyz', 'Engineer', 'Ananya', 'Artist', 'SBH Colony', 'second stage', '876512346543', 'silver', 'vijayanagara', 'hospet', 'hospet'),
+(11, 'Shivam Tiwari', 24, '2000/09/09', '6862369896', '1234567699', 'Dr Kapoor', 'Government Employee', 'Aiman', 'Engineer', 'Yalahanka', 'First Stage', '987698769876', 'silver', 'Koppal', 'Koppal', 'Koppala'),
+(13, 'Varsha Suthar', 25, '1999/04/05', '7622369694', '2234567690', 'Dr Ramesh', 'Artist', 'Aleka', 'Housewife', 'Dollors Colony', 'main', '123498763456', 'platinum', 'koppal', 'gangavathi', 'gangavathi'),
+(14, 'Prakash Bhattarai', 35, '1989/03/06', '9802851472', '1234567890', 'Hari Bahadur', 'Government Employee', 'Avexa', 'Government Employee', 'MG Road', 'Main Road', '878934561234', 'gold', 'Bellary', 'Bellary', 'Bellary');
 
 -- --------------------------------------------------------
 
